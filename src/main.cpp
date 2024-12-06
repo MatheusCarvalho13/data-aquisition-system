@@ -70,10 +70,10 @@ std::string readRecordFromFile(const std::string& fileName, int cont_RecordsToRe
             file.read(reinterpret_cast<char*>(&record), sizeof(LogRecord));
             records.push_back(record);
         }
-        file.close();
+    file.close();
 
         int cont_Records = records.size();
-        if (cont_Records > cont_RecordsToRead) {
+    if (cont_Records > cont_RecordsToRead) {
             records.erase(records.begin(), records.end() - cont_RecordsToRead);
         }
 
@@ -83,19 +83,19 @@ std::string readRecordFromFile(const std::string& fileName, int cont_RecordsToRe
         }
         shareMessage += "\r\n";
         return shareMessage;
+        
     } else {
         std::cerr << "Error opening file: " << fileName << std::endl;
+        
         return "ERROR|INVALID_SENSOR_ID\r\n";
-    }
-}
+    }}
 
 class Session : public std::enable_shared_from_this<Session> {
 public:
     Session(tcp::socket socket) : socket_(std::move(socket)) {}
 
     void start() {
-        readMessage();
-    }
+        readMessage();}
 
 private:
     void readMessage() {
@@ -164,6 +164,8 @@ private:
 
     tcp::acceptor acceptor_;
 };
+
+
 
 int main() {
     try {
